@@ -13,54 +13,50 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
-public class Core extends JFrame{
-    private static final long serialVersionUID = 1L;
-    private JPanel contentPane;
-    private final JPanel panel = new JPanel();
-
-    //image setup
-    private BufferedImage boardImage;
+import ChessGame.main.ui.LaunchPage;
+import ChessGame.main.ui.PreferencesFrame;
 
 
-    public static void Launch(){
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Core frame = new Core();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+public class Core {
+
+
+
+    //Preset value
+    private static Core coreInstance = new Core();
+    private static boolean isPLaying;
+    private static LaunchPage launchPage;
+    private static PreferencesFrame preferencesFrame;
+    //private static GameModel gameModel;
+
+
+    public static Core getCoreInstance()
+    {
+        return coreInstance;
     }
 
 
+    public static void Launch(){
+        isPLaying = false;
+        launchPage = new LaunchPage();
+        launchPage.setVisible(true);
+
+    }
+
+
+
+
+
     public Core() {
-        //set settings for JFrame
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
-        panel.setBounds(0, 0, 434, 261);
-        contentPane.add(panel);
-        panel.setLayout(null);
+    }
 
-        //initialized image path
-        try {
-            boardImage = ImageIO.read(new File("pictures/Chessboard.png"));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
 
-        JLabel Chessboard = new JLabel(new ImageIcon(boardImage));
+    public static LaunchPage getLaunchPage(){
+        return launchPage;
+    }
 
-        Chessboard.setBounds(0, 0, 434, 261);
-        panel.add(Chessboard);
+    public static PreferencesFrame getPreferencesFrame(){return preferencesFrame;}
+    public static boolean isPLaying(){
+        return isPLaying;
     }
 }
