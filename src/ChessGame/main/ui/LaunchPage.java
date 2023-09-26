@@ -27,7 +27,7 @@ public class LaunchPage extends JFrame{
 
     // testing
     private static final long serialVersionUID = 1L;
-    private JPanel contentPane;
+    private JPanel contentPanel;
     private final JPanel panel = new JPanel();
 
     //image setup
