@@ -24,14 +24,19 @@ public class GameManager {
     //private NetworkHandler networkHandler;
     private String opponentName;
 
-    public GameManager() {
-        this.preferences = Core.getPreferences();
+    public GameManager(Preferences pref) {
+        this.preferences = pref;
         initialize();
     }
 
     private void initialize() {
         //initializeTimers();
-        //initializeUIComponents();
+        initializeUIComponents();
+    }
+
+    private void initializeUIComponents() {
+        boardPanel = new BoardPanel(this);
+        gameFrame = new GameFrame(this);
     }
 
 
@@ -50,11 +55,11 @@ public class GameManager {
         System.out.println("hello??");
         Move move = new Move(originFile, originRank, destinationFile, destinationRank);
         executeMove(move);
-        //if (MoveValidator.validateMove(move)) {
-        //    executeMove(move);
-        //} else {
-            //
-        //}
+        if (MoveValidator.validateMove(move)) {
+            executeMove(move);
+        } else {
+
+        }
     }
 
     private void executeMove(Move move) {

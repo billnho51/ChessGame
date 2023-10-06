@@ -217,8 +217,9 @@ public class PreferencesFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (ValidatePreferrences()){
-                    GameFrame gameFrame= Core.getGameFrame();
-                    gameFrame = new GameFrame();
+                    Core.StartGame();
+                    //GameFrame gameFrame= Core.getGameFrame();
+                    //gameFrame = new GameFrame();
                     setVisible(false);
                 }
                 else{

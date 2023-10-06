@@ -108,6 +108,7 @@ public class BoardPanel extends JPanel implements Observer {
         if (draggedPieceImageLabel != null) {
             draggedPieceImageLabel.setLocation(dragX, dragY);
         }
+        System.out.println("dragged on: " + draggedPieceImageLabel.getText());
     }
 
     /**

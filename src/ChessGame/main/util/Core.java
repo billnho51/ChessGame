@@ -47,7 +47,7 @@ public class Core {
 
     public static void StartGame(){
         isPLaying = true;
-        gameManager = new GameManager();
+        gameManager = new GameManager(preferences);
     }
 
 

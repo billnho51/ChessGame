@@ -9,11 +9,14 @@ import java.awt.*;
 public class GameFrame extends JFrame {
 
     private JPanel BoardPanel;
+    private JPanel TimerPanel;
+    private JPanel ControlPanel;
+    private JPanel moveHistoryPanel;
     private GameManager gameManager;
-    public GameFrame() {
+    public GameFrame(GameManager gameManager){
         super("ChessGame");
-        gameManager = new GameManager();
-        this.BoardPanel = new BoardPanel(gameManager);
+        //gameManager = new GameManager();
+        this.BoardPanel = gameManager.getBoardPanel();
         BoardPanel.setPreferredSize(new Dimension(850, 850));
         this.add(BoardPanel);
 

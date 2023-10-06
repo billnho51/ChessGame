@@ -2,6 +2,7 @@ package ChessGame.main.util;
 
 import ChessGame.main.ui.BoardPanel;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -35,8 +36,9 @@ public class PieceDragandDropListener implements MouseListener, MouseMotionListe
     @Override
     public void mouseReleased(MouseEvent e) {
         if (dragging) {
-            //boardPanel.postDrag();
-            //boardPanel.submitMoveRequest(originFile, originRank, calculateFile(e), calculateRank(e));
+            boardPanel.postDrag();
+            System.out.println("moving: " + originFile + originRank + " to " + calculateFile(e) + calculateRank(e));
+            boardPanel.submitMoveRequest(originFile, originRank, calculateFile(e), calculateRank(e));
         }
         dragging = false;
     }
