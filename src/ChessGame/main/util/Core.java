@@ -13,10 +13,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+import ChessGame.main.ui.GameFrame;
 import ChessGame.main.ui.LaunchPage;
 import ChessGame.main.ui.PreferencesFrame;
 
-
+//Main class managing between launchFrame, Preferences and game Frame
 public class Core {
 
 
@@ -25,8 +26,10 @@ public class Core {
     private static Core coreInstance = new Core();
     private static boolean isPLaying;
     private static LaunchPage launchPage;
+    private static  Preferences preferences;
     private static PreferencesFrame preferencesFrame;
-    //private static GameModel gameModel;
+    private static GameFrame gameFrame;
+    private static GameManager gameManager;
 
 
     public static Core getCoreInstance()
@@ -38,8 +41,13 @@ public class Core {
     public static void Launch(){
         isPLaying = false;
         launchPage = new LaunchPage();
-        launchPage.setVisible(true);
+        preferences = new Preferences();
 
+    }
+
+    public static void StartGame(){
+        isPLaying = true;
+        gameManager = new GameManager();
     }
 
 
@@ -59,4 +67,9 @@ public class Core {
     public static boolean isPLaying(){
         return isPLaying;
     }
+    public static Preferences getPreferences(){
+        return preferences;
+    }
+
+    public static GameFrame getGameFrame(){return gameFrame;}
 }

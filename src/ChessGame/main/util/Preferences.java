@@ -25,6 +25,12 @@ public class Preferences {
 
             case OFFLINE:
                 if (timerMode == null) return false;
+                else if(timerMode == TimerMode.COUNTDOWN){
+                    if (timeLimit == 0){
+                        System.out.println("timer not set");
+                        return false;
+                    }
+                }
                 return true;
 
         }

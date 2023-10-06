@@ -1,5 +1,6 @@
 package ChessGame.main.ui;
 
+import ChessGame.main.util.GameManager;
 import ChessGame.main.util.Preferences;
 import ChessGame.main.util.Core;
 
@@ -51,7 +52,6 @@ public class PreferencesFrame extends JFrame{
 
     public PreferencesFrame(){
         super("GameSettings");
-        Preferences pref = new Preferences();
         LoadPreferences();
         LoadPanel();
 
@@ -78,6 +78,7 @@ public class PreferencesFrame extends JFrame{
 
 
     public void LoadPreferences(){
+        Preferences pref = Core.getPreferences();
 
 
     }
@@ -215,6 +216,14 @@ public class PreferencesFrame extends JFrame{
         playButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (ValidatePreferrences()){
+                    GameFrame gameFrame= Core.getGameFrame();
+                    gameFrame = new GameFrame();
+                    setVisible(false);
+                }
+                else{
+                    showIncompleteDialog();
+                }
 
             }
         });
@@ -226,8 +235,36 @@ public class PreferencesFrame extends JFrame{
 
     }
 
+    public boolean ValidatePreferrences(){
+        Preferences pref = Core.getPreferences();
+        if (onlineButton.isSelected()){
+            System.out.println("online not implemented yet, setting to offline");
+            pref.setGameMode(Preferences.GameMode.OFFLINE);
+        }
+        if (offlineButton.isSelected()){
+            pref.setGameMode(Preferences.GameMode.OFFLINE);
+        }
+        if(reverseBoardCheckBox.isSelected()){
+            pref.setReverseBoard(true);
+        }
+        if(timerRadioButton.isSelected()){
+            pref.setTimerMode(Preferences.TimerMode.TIMER);
+        }
+        if(countdownRadioButton.isSelected()){
+            pref.setTimerMode(Preferences.TimerMode.COUNTDOWN);
+            if(!timeLimitField.getText().isEmpty()) pref.setTimeLimit(Integer.parseInt(timeLimitField.getText()));
+
+        }
+        return pref.isPreferenceComplete();
+    }
+
+
     private void enablePlay(boolean value){
         playButton.setEnabled(value);
+    }
+
+    private void showIncompleteDialog() {
+        JOptionPane.showMessageDialog(this, "Please set all necessary preferences. ", "Unfinished Preferences", JOptionPane.WARNING_MESSAGE);
     }
 
 
