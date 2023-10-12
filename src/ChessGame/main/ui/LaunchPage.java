@@ -49,6 +49,7 @@ public class LaunchPage extends JFrame{
         this.pack();
         this.setVisible(true);
         this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
     }
 

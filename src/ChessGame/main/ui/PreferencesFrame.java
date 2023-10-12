@@ -74,6 +74,7 @@ public class PreferencesFrame extends JFrame{
         this.setVisible(true);
         this.setResizable(true);
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 
@@ -132,11 +133,6 @@ public class PreferencesFrame extends JFrame{
         timerModePanel.add(timeLimitField);
         gameSettingsPanel.add(reverseBoardPanel, BorderLayout.CENTER);
         gameSettingsPanel.add(timerModePanel, BorderLayout.PAGE_END);
-
-
-
-
-
 
     }
 

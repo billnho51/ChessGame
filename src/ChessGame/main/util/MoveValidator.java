@@ -16,6 +16,7 @@ public class MoveValidator {
     }
 
     public static boolean validateMove(Move move) {
-        return true;
+        System.out.println("move not allowed");
+        return false;
     }
 }

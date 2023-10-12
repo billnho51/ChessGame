@@ -6,7 +6,8 @@ public class Preferences {
     }
     public enum TimerMode{
         TIMER,
-        COUNTDOWN
+        COUNTDOWN,
+
     }
 
     public boolean ReverseBoard;

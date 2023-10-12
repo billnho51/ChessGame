@@ -21,8 +21,8 @@ public class BoardPanel extends JPanel implements Observer {
     private JPanel boardPanel;
     private JPanel[][] squarePanels;
     public BoardPanel(GameManager gameManager){
-        this.boardReversed = Core.getPreferences().isReverseBoard();
         this.gameManager = gameManager;
+        this.boardReversed = gameManager.getPreferences().isReverseBoard();
         InitializedBoardPanel();
         InitializedChessBoard();
         initializePieces();

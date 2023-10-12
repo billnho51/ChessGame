@@ -4,6 +4,7 @@ import ChessGame.main.Board.Board;
 import ChessGame.main.pieces.Piece;
 import ChessGame.main.ui.BoardPanel;
 import ChessGame.main.ui.GameFrame;
+import ChessGame.main.ui.TimerPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,8 @@ public class GameManager {
 
     private GameFrame gameFrame;
     private BoardPanel boardPanel;
+
+    private TimerPanel timerPanel;
     //private ControlPanel controlPanel;
     //private MoveHistoryPanel moveHistoryPanel;
     //private WaitingDialog waitingDialog;
@@ -30,13 +33,30 @@ public class GameManager {
     }
 
     private void initialize() {
-        //initializeTimers();
         initializeUIComponents();
+        initializeTimers();
+
+    }
+
+    private void initializeTimers() {
+        whiteTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timerPanel.UpdateTimeWhite();
+            }
+        });
+        blackTimer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                timerPanel.UpdateTimeBlack();
+            }
+        });
     }
 
     private void initializeUIComponents() {
         boardPanel = new BoardPanel(this);
         gameFrame = new GameFrame(this);
+        timerPanel = new TimerPanel(this);
     }
 
 
@@ -99,6 +119,10 @@ public class GameManager {
 
     public GameFrame getGameFrame() {
         return gameFrame;
+    }
+
+    public Preferences getPreferences() {
+        return preferences;
     }
 
     public void setOpponentName(String opponentName) {
