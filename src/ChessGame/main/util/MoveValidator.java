@@ -29,6 +29,10 @@ public class MoveValidator {
             System.out.println("other player turn");
             return false;
         }
+        if(!move.getPiece().validateMove(move)){
+            System.out.println("move not allow for this piece");
+            return false;
+        }
 
         if(move.getPiece().getColor() == Piece.Color.BLACK){
             SelectedPieceColor = Piece.Color.WHITE;

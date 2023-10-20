@@ -11,6 +11,18 @@ public class Bishop extends Piece{
 
     @Override
     public boolean validateMove(Move move) {
+        // executeMove or capture
+        if ((move.getCapturedPiece() == null)
+                || (move.getCapturedPiece() != null
+                && !move.getPiece().getColor().equals(move.getCapturedPiece().getColor()))) {
+            // diagonal executeMove
+            if (Math.abs(move.getDestinationFile() - move.getOriginFile())
+                    == Math.abs(move.getDestinationRank() - move.getOriginRank())) {
+                return true;
+            }
+        }
+
+        // all other cases
         return false;
     }
 

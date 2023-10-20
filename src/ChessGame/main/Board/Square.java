@@ -43,4 +43,5 @@ public class Square {
     public Piece getCurrentPiece() {
         return this.currentPiece;
     }
+
 }

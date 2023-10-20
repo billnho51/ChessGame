@@ -72,7 +72,7 @@ public class GameManager {
     }
 
     private void onLocalMoveRequest(char originFile, int originRank, char destinationFile, int destinationRank) {
-        System.out.println("hello??");
+        System.out.println("creating move for validation");
         Move move = new Move(originFile, originRank, destinationFile, destinationRank);
         //executeMove(move);
         if (MoveValidator.validateMove(move)) {

@@ -14,8 +14,8 @@ public class Move {
     private int timeUsed;
 
     public Move(char originFile, int originRank, char destinationFile, int destinationRank) {
-        this.piece = Board.getSquare(originFile, originRank).getCurrentPiece();
-        if(Board.getSquare(destinationFile, destinationRank).getCurrentPiece() != null) this.capturedPiece = Board.getSquare(destinationFile, destinationRank).getCurrentPiece();
+        if(Board.getSquare(originFile, originRank) != null) this.piece = Board.getSquare(originFile, originRank).getCurrentPiece();
+        if(Board.getSquare(destinationFile, destinationRank) != null) this.capturedPiece = Board.getSquare(destinationFile, destinationRank).getCurrentPiece();
         this.originFile = originFile;
         this.originRank = originRank;
         this.destinationFile = destinationFile;

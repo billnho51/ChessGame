@@ -40,12 +40,13 @@ public class BoardPanel extends JPanel implements Observer {
      */
     public void submitMoveRequest(char originFile, int originRank, char destinationFile, int destinationRank) {
         System.out.println("submitting move");
-        if (getSquarePanel(originFile, originRank).getComponentCount() != 0 ) {
+        //pre-check for valid move
+        if (getSquarePanel(originFile, originRank).getComponentCount() != 0) {
             getSquarePanel(originFile, originRank).getComponent(0).setVisible(true);
             gameManager.onMoveRequest(originFile, originRank, destinationFile, destinationRank);
         }
         else{
-            System.out.println("move not valid");
+            System.out.println("theres no piece on selected square");
         }
     }
 
