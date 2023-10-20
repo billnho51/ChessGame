@@ -39,9 +39,13 @@ public class BoardPanel extends JPanel implements Observer {
      * @param destinationRank
      */
     public void submitMoveRequest(char originFile, int originRank, char destinationFile, int destinationRank) {
-        if (getSquarePanel(originFile, originRank).getComponent(0) != null ) {
+        System.out.println("submitting move");
+        if (getSquarePanel(originFile, originRank).getComponentCount() != 0 ) {
             getSquarePanel(originFile, originRank).getComponent(0).setVisible(true);
             gameManager.onMoveRequest(originFile, originRank, destinationFile, destinationRank);
+        }
+        else{
+            System.out.println("move not valid");
         }
     }
 
@@ -87,7 +91,9 @@ public class BoardPanel extends JPanel implements Observer {
      * @param dragY The coordinates where the drag begins
      */
     public void preDrag(char originFile, int originRank, int dragX, int dragY) {
+        System.out.println("pre dragging");
         Piece originPiece = gameManager.queryPiece(originFile, originRank);
+        //setting piece for drag
         if (originPiece != null) {
             getSquarePanel(originFile, originRank).getComponent(0).setVisible(false);
             JLabel draggedPieceImageLabel = getPieceImageLabel(originPiece);
@@ -104,20 +110,26 @@ public class BoardPanel extends JPanel implements Observer {
      * @param dragY the new coordinates of the dragged piece's image label
      */
     public void executeDrag(int dragX, int dragY) {
+        if(boardLayeredPane.getComponentsInLayer(JLayeredPane.DRAG_LAYER).length == 0) return;
         JLabel draggedPieceImageLabel = (JLabel) boardLayeredPane.getComponentsInLayer(JLayeredPane.DRAG_LAYER)[0];
         if (draggedPieceImageLabel != null) {
             draggedPieceImageLabel.setLocation(dragX, dragY);
         }
-        System.out.println("dragged on: " + draggedPieceImageLabel.getText());
     }
 
     /**
      * Remove the dragged piece's image label from the drag layer, called by the PieceDragAndDropListener
      */
     public void postDrag() {
+        if(!IsSelectingPiece()) return;
         JLabel draggedPieceImageLabel = (JLabel) boardLayeredPane.getComponentsInLayer(JLayeredPane.DRAG_LAYER)[0];
         boardLayeredPane.remove(draggedPieceImageLabel);
         boardLayeredPane.repaint();
+    }
+
+    public boolean IsSelectingPiece(){
+        if(boardLayeredPane.getComponentsInLayer(JLayeredPane.DRAG_LAYER).length == 0) return false;
+        return true;
     }
 
     //draw each panel and add to the board

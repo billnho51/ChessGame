@@ -1,5 +1,7 @@
 package ChessGame.main.pieces;
 
+import ChessGame.main.util.Move;
+
 public abstract class Piece {
     //since other chess piece inherit from Piece
     public enum Color {
@@ -19,6 +21,8 @@ public abstract class Piece {
         this.color = color;
         this.capture = false;
     }
+
+    public abstract boolean validateMove(Move move);
     public String getImageFileName() {
         String fileName = "/pieces/";
         switch (color) {

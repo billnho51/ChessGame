@@ -15,7 +15,7 @@ public class Move {
 
     public Move(char originFile, int originRank, char destinationFile, int destinationRank) {
         this.piece = Board.getSquare(originFile, originRank).getCurrentPiece();
-        this.capturedPiece = Board.getSquare(destinationFile, destinationRank).getCurrentPiece();
+        if(Board.getSquare(destinationFile, destinationRank).getCurrentPiece() != null) this.capturedPiece = Board.getSquare(destinationFile, destinationRank).getCurrentPiece();
         this.originFile = originFile;
         this.originRank = originRank;
         this.destinationFile = destinationFile;
@@ -40,6 +40,12 @@ public class Move {
         this.originRank = originRank;
         this.destinationFile = destinationFile;
         this.destinationRank = destinationRank;
+        this.valid = false;
+    }
+
+    public void SetupMoveAfterValidate(){
+        this.piece = Board.getSquare(originFile, originRank).getCurrentPiece();
+        this.capturedPiece = Board.getSquare(destinationFile, destinationRank).getCurrentPiece();
         this.valid = false;
     }
 

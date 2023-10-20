@@ -24,6 +24,7 @@ public class PieceDragandDropListener implements MouseListener, MouseMotionListe
     public void mousePressed(MouseEvent e) {
         originFile = calculateFile(e);
         originRank = calculateRank(e);
+        System.out.println("pressed on " + originFile + originRank);
         if (boardPanel.isBoardReversed()) {
             dragOffsetX = e.getPoint().x - boardPanel.SQUARE_DIMENSION * ('h' - calculateFile(e));
             dragOffsetY = e.getPoint().y - boardPanel.SQUARE_DIMENSION * (calculateRank(e) - 1);
@@ -46,11 +47,11 @@ public class PieceDragandDropListener implements MouseListener, MouseMotionListe
     @Override
     public void mouseDragged(MouseEvent e) {
         if (dragging) {
-            System.out.println("mouse dragged??");
+            //System.out.println("mouse dragged??");
             boardPanel.executeDrag(e.getPoint().x - dragOffsetX, e.getPoint().y - dragOffsetY);
         } else {
             boardPanel.preDrag(originFile, originRank, e.getPoint().x - dragOffsetX, e.getPoint().y - dragOffsetY);
-            System.out.println("mouse predragged??");
+            //System.out.println("mouse predragged??");
             dragging = true;
         }
     }

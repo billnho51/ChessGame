@@ -74,15 +74,19 @@ public class GameManager {
     private void onLocalMoveRequest(char originFile, int originRank, char destinationFile, int destinationRank) {
         System.out.println("hello??");
         Move move = new Move(originFile, originRank, destinationFile, destinationRank);
-        executeMove(move);
+        //executeMove(move);
         if (MoveValidator.validateMove(move)) {
+            System.out.println(move.getCapturedPiece());
             executeMove(move);
+
         } else {
+            System.out.println("move not allowed");
 
         }
     }
 
     private void executeMove(Move move) {
+        //move.SetupMoveAfterValidate();
         //MoveLogger.addMove(move);
         Board.executeMove(move);
         //moveHistoryPanel.printMove(move);
