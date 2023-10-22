@@ -9,7 +9,7 @@ public abstract class Piece {
     }
 
     public enum Type {
-        KING, ROOK, BISHOP, QUEEN, KNIGHT, PAWN,
+        KING, ROOK, BISHOP, QUEEN, KNIGHT, PAWN, CANNON
     }
 
 
@@ -51,6 +51,9 @@ public abstract class Piece {
                 break;
             case PAWN:
                 fileName += "pawn";
+                break;
+            case CANNON:
+                fileName += "cannon";
                 break;
         }
         fileName += ".png";
