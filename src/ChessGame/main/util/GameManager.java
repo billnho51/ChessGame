@@ -4,6 +4,7 @@ import ChessGame.main.Board.Board;
 import ChessGame.main.pieces.Piece;
 import ChessGame.main.ui.BoardPanel;
 import ChessGame.main.ui.GameFrame;
+import ChessGame.main.ui.MoveHistoryPanel;
 import ChessGame.main.ui.TimerPanel;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ public class GameManager {
 
     private TimerPanel timerPanel;
     //private ControlPanel controlPanel;
-    //private MoveHistoryPanel moveHistoryPanel;
+    private MoveHistoryPanel moveHistoryPanel;
     //private WaitingDialog waitingDialog;
 
     private Timer whiteTimer;
@@ -55,8 +56,9 @@ public class GameManager {
 
     private void initializeUIComponents() {
         boardPanel = new BoardPanel(this);
-        gameFrame = new GameFrame(this);
         timerPanel = new TimerPanel(this);
+        moveHistoryPanel = new MoveHistoryPanel(this);
+        gameFrame = new GameFrame(this);
     }
 
 
@@ -89,7 +91,7 @@ public class GameManager {
         //move.SetupMoveAfterValidate();
         //MoveLogger.addMove(move);
         Board.executeMove(move);
-        //moveHistoryPanel.printMove(move);
+        moveHistoryPanel.PrintMove(move);
         boardPanel.executeMove(move);
         switchTimer(move);
         //if (MoveValidator.isCheckMove(move)) {
@@ -119,6 +121,13 @@ public class GameManager {
 
     public BoardPanel getBoardPanel() {
         return boardPanel;
+    }
+    public TimerPanel getTimerPanel(){
+        return timerPanel;
+    };
+
+    public MoveHistoryPanel getMoveHistoryPanel(){
+        return moveHistoryPanel;
     }
 
     public GameFrame getGameFrame() {
