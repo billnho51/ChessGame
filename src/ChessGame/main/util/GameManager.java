@@ -16,6 +16,7 @@ public class GameManager {
 
     private GameFrame gameFrame;
     private BoardPanel boardPanel;
+    private AudioManager audioManager;
 
     private TimerPanel timerPanel;
     //private ControlPanel controlPanel;
@@ -58,6 +59,7 @@ public class GameManager {
         boardPanel = new BoardPanel(this);
         timerPanel = new TimerPanel(this);
         moveHistoryPanel = new MoveHistoryPanel(this);
+        audioManager = new AudioManager(this);
         gameFrame = new GameFrame(this);
     }
 
@@ -92,6 +94,7 @@ public class GameManager {
         Board.executeMove(move);
         moveHistoryPanel.PrintMove(move);
         boardPanel.executeMove(move);
+        audioManager.PlaySound();
         switchTimer(move);
         //if (MoveValidator.isCheckMove(move)) {
         //    if (MoveValidator.isCheckMate(move)) {

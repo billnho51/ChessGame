@@ -16,6 +16,7 @@ import java.io.IOException;
 import ChessGame.main.ui.GameFrame;
 import ChessGame.main.ui.LaunchPage;
 import ChessGame.main.ui.PreferencesFrame;
+import javafx.application.Application;
 
 //Main class managing between launchFrame, Preferences and game Frame
 public class Core {

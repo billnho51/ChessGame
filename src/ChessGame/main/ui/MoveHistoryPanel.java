@@ -25,7 +25,6 @@ public class MoveHistoryPanel extends JPanel implements Observer {
         titled.setTitleFont(titled.getTitleFont().deriveFont(15f));
         this.setBorder(titled);
         InitializedUI();
-
     }
 
     private void InitializedUI(){
@@ -48,13 +47,11 @@ public class MoveHistoryPanel extends JPanel implements Observer {
         if (move.getPiece().getColor() == Piece.Color.WHITE){
             MoveHolder = new JPanel(new GridLayout(1,3));
             ComponentCounter = 0;
-
             JLabel turnLabel = new JLabel();
             turnLabel.setText(turnCounter+". ");
             turnCounter++;
             turnLabel.setBorder(titled);
-            //turnLabel.setMaximumSize(new Dimension(this.getMaximumSize().width, MoveHolder.getMinimumSize().height));
-            //System.out.println("turn Label Size is: "+ turnLabel.getSize());
+            //adding 2 panel to pre-stretched the layout
             MoveHolder.add(turnLabel);
             JPanel temp = new JPanel(new GridLayout());
             temp.setBorder(titled);
@@ -112,17 +109,13 @@ public class MoveHistoryPanel extends JPanel implements Observer {
             );
         }
 
-        //MoveHolder = new JPanel();
-
         previousMove.setHorizontalAlignment(JButton.LEFT);
-        //previousMove.setMaximumSize(new Dimension(this.getMaximumSize().width, MoveHolder.getMaximumSize().height));
         previousMove.setBorder(titled);
 
         MoveHolder.setMaximumSize(new Dimension(this.getMaximumSize().width, previousMove.getMinimumSize().height));
         JPanel temp = (JPanel) MoveHolder.getComponent(ComponentCounter);
         temp.add(previousMove);
         ComponentCounter++;
-        //System.out.println("adding: " + previousMove.getText());
         MoveHistoryDisplayPanel.add(MoveHolder);
     }
 
