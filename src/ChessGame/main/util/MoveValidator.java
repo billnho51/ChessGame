@@ -17,25 +17,25 @@ public class MoveValidator {
     }
 
     public static boolean validateMove(Move move) {
-        System.out.println("validate moving " + move.getOriginFile()+ move.getOriginRank() + " to "+ move.getDestinationFile() + move.getDestinationRank());
+        //System.out.println("validate moving " + move.getOriginFile()+ move.getOriginRank() + " to "+ move.getDestinationFile() + move.getDestinationRank());
         //check if out of bound
         if(move.getDestinationFile() < 'a' || move.getDestinationFile() > 'h' || move.getDestinationRank() < 1 || move.getDestinationRank() >8){
-            System.out.println("out of bound");
+            //System.out.println("out of bound");
             return false;
         }
         //check if selecting null pieces
         if(move.getPiece() == null){
-            System.out.println("piece is null ??");
+            //System.out.println("piece is null ??");
             return false;
         }
         //check if correct turn
         if(move.getPiece().getColor() != SelectedPieceColor){
-            System.out.println("other player turn");
+            //System.out.println("other player turn");
             return false;
         }
         //check for pieces rules
         if(!move.getPiece().validateMove(move)){
-            System.out.println("move not allow for this piece");
+            //System.out.println("move not allow for this piece");
             return false;
         }
         if(!validateClearPath(move)) return false;

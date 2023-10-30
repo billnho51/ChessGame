@@ -59,7 +59,7 @@ public class TimerPanel extends JPanel implements Observer{
         WhiteTimerPanel = new JPanel();
         BlackTimerPanel = new JPanel();
 
-        System.out.println("initializing timer");
+        //System.out.println("initializing timer");
         whiteTimeLabel = new JLabel("White: ");
         whiteTimeLabel.setFont(whiteTimeLabel.getFont().deriveFont(48f));;
         blackTimeLabel = new JLabel("Black: ");

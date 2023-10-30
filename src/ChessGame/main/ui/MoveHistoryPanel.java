@@ -1,5 +1,6 @@
 package ChessGame.main.ui;
 
+import ChessGame.main.pieces.Piece;
 import ChessGame.main.util.GameManager;
 import ChessGame.main.util.Move;
 
@@ -13,6 +14,8 @@ public class MoveHistoryPanel extends JPanel implements Observer {
     GameManager gameManager;
     private JPanel MoveHistoryDisplayPanel;
     private JPanel MoveHolder;
+    private int turnCounter =1;
+    private int ComponentCounter = 0;
 
     public MoveHistoryPanel (GameManager gameManager){
         this.gameManager = gameManager;
@@ -34,19 +37,93 @@ public class MoveHistoryPanel extends JPanel implements Observer {
     }
 
     public void PrintMove(Move move){
-        JLabel previousMove = new JLabel();
-        previousMove.setText(move.getPiece().getColor().name()
-                +" "
-                + move.getPiece().getType().name()
-                + ": "
-                + move.getOriginFile()
-                + move.getOriginRank()
-                + " to " + move.getDestinationFile()
-                + move.getDestinationRank()
-        );
-        MoveHolder = new JPanel(new BorderLayout());
-        MoveHolder.add(previousMove, BorderLayout.WEST);
-        MoveHistoryDisplayPanel.add(previousMove);
+        JButton previousMove = new JButton();
+        previousMove.setFont(previousMove.getFont().deriveFont(15f));
+        String PieceName = "";
+        ///
+        TitledBorder titled;
+        titled = BorderFactory.createTitledBorder("");
+
+        ////
+        if (move.getPiece().getColor() == Piece.Color.WHITE){
+            MoveHolder = new JPanel(new GridLayout(1,3));
+            ComponentCounter = 0;
+
+            JLabel turnLabel = new JLabel();
+            turnLabel.setText(turnCounter+". ");
+            turnCounter++;
+            turnLabel.setBorder(titled);
+            //turnLabel.setMaximumSize(new Dimension(this.getMaximumSize().width, MoveHolder.getMinimumSize().height));
+            //System.out.println("turn Label Size is: "+ turnLabel.getSize());
+            MoveHolder.add(turnLabel);
+            JPanel temp = new JPanel(new GridLayout());
+            temp.setBorder(titled);
+            MoveHolder.add(temp);
+            JPanel temp2 = new JPanel(new GridLayout());
+            temp2.setBorder(titled);
+            MoveHolder.add(temp2);
+            ComponentCounter++;
+
+        }
+        switch (move.getPiece().getType()){
+            case KING:
+                if (move.getPiece().getColor() == Piece.Color.BLACK) PieceName = "\u265A";
+                else PieceName = "\u2654";
+                break;
+            case ROOK:
+                if (move.getPiece().getColor() == Piece.Color.BLACK) PieceName = "\u265C";
+                else PieceName = "\u2656";
+                break;
+            case QUEEN:
+                if (move.getPiece().getColor() == Piece.Color.BLACK) PieceName = "\u265B";
+                else PieceName = "\u2655";
+                break;
+            case PAWN:
+                if (move.getPiece().getColor() == Piece.Color.BLACK) PieceName = "\u265F";
+                else PieceName = "\u2659";
+                break;
+            case BISHOP:
+                if (move.getPiece().getColor() == Piece.Color.BLACK) PieceName = "\u265D";
+                else PieceName = "\u2657";
+                break;
+            //case CANNON:
+            //    if (move.getPiece().getColor() == Piece.Color.BLACK) PieceName = "\u265A";
+            //    else PieceName = "\u2654 ";
+            //    break;
+            case KNIGHT:
+                if (move.getPiece().getColor() == Piece.Color.BLACK) PieceName = "\u265E";
+                else PieceName = "\u2658";
+                break;
+            default:
+                break;
+        }
+        if (move.getCapturedPiece() != null){
+            previousMove.setText(
+                    PieceName + "x"
+                            + move.getDestinationFile()
+                            + move.getDestinationRank()
+            );
+        }
+        else{
+            previousMove.setText(
+                    PieceName
+                            + move.getDestinationFile()
+                            + move.getDestinationRank()
+            );
+        }
+
+        //MoveHolder = new JPanel();
+
+        previousMove.setHorizontalAlignment(JButton.LEFT);
+        //previousMove.setMaximumSize(new Dimension(this.getMaximumSize().width, MoveHolder.getMaximumSize().height));
+        previousMove.setBorder(titled);
+
+        MoveHolder.setMaximumSize(new Dimension(this.getMaximumSize().width, previousMove.getMinimumSize().height));
+        JPanel temp = (JPanel) MoveHolder.getComponent(ComponentCounter);
+        temp.add(previousMove);
+        ComponentCounter++;
+        //System.out.println("adding: " + previousMove.getText());
+        MoveHistoryDisplayPanel.add(MoveHolder);
     }
 
     @Override

@@ -39,7 +39,7 @@ public class BoardPanel extends JPanel implements Observer {
      * @param destinationRank
      */
     public void submitMoveRequest(char originFile, int originRank, char destinationFile, int destinationRank) {
-        System.out.println("submitting move");
+        //System.out.println("submitting move");
         //pre-check for valid move
         if (getSquarePanel(originFile, originRank).getComponentCount() != 0) {
             getSquarePanel(originFile, originRank).getComponent(0).setVisible(true);
@@ -56,7 +56,7 @@ public class BoardPanel extends JPanel implements Observer {
      * @param move A validated Move object
      */
     public void executeMove(Move move) {
-        System.out.println("moving piece ??");
+        //System.out.println("moving piece ??");
         JPanel originSquarePanel = getSquarePanel(move.getOriginFile(), move.getOriginRank());
         JPanel destinationSquarePanel = getSquarePanel(move.getDestinationFile(), move.getDestinationRank());
         destinationSquarePanel.removeAll();
@@ -92,7 +92,7 @@ public class BoardPanel extends JPanel implements Observer {
      * @param dragY The coordinates where the drag begins
      */
     public void preDrag(char originFile, int originRank, int dragX, int dragY) {
-        System.out.println("pre dragging");
+        //System.out.println("pre dragging");
         Piece originPiece = gameManager.queryPiece(originFile, originRank);
         //setting piece for drag
         if (originPiece != null) {
