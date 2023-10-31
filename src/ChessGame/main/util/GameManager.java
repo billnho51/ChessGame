@@ -94,7 +94,13 @@ public class GameManager {
         Board.executeMove(move);
         moveHistoryPanel.PrintMove(move);
         boardPanel.executeMove(move);
-        audioManager.PlaySound();
+        if(move.getCapturedPiece() == null){
+            audioManager.PlayMovePiece();
+        }
+        else{
+            audioManager.PlayCapturePiece();
+        }
+
         switchTimer(move);
         //if (MoveValidator.isCheckMove(move)) {
         //    if (MoveValidator.isCheckMate(move)) {
