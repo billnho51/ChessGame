@@ -171,7 +171,7 @@ public class PieceSet{
     }
 
     private static void initializeKingsCoordinates() {
-        whiteKingFile = blackKingFile = 'd';
+        whiteKingFile = blackKingFile = 'e';
         whiteKingRank = 1;
         blackKingRank = 8;
     }

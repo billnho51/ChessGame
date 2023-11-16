@@ -24,6 +24,7 @@ public class Move {
     }
 
     public Move(Piece piece, char originFile, int originRank, char destinationFile, int destinationRank) {
+        //System.out.println("getting square at " + destinationFile+destinationRank);
         this.piece = piece;
         this.capturedPiece = Board.getSquare(destinationFile, destinationRank).getCurrentPiece();
         this.originFile = originFile;

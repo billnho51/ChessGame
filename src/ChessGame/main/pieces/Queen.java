@@ -21,12 +21,12 @@ public class Queen extends Piece{
             }
             //vertical movement
             if (move.getDestinationRank() != move.getOriginRank()){
-                System.out.println("moving vertical");
+                //System.out.println("moving vertical");
                 if(move.getDestinationFile() == move.getOriginFile()) return true;
             }
             //horizontal movement
             if (move.getDestinationFile() != move.getOriginFile()){
-                System.out.println("moving horizontal");
+                //System.out.println("moving horizontal");
                 if(move.getDestinationRank() == move.getOriginRank()) return true;
             }
         }

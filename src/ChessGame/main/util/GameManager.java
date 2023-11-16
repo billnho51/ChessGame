@@ -2,6 +2,7 @@ package ChessGame.main.util;
 
 import ChessGame.main.Board.Board;
 import ChessGame.main.pieces.Piece;
+import ChessGame.main.pieces.PieceSet;
 import ChessGame.main.ui.BoardPanel;
 import ChessGame.main.ui.GameFrame;
 import ChessGame.main.ui.MoveHistoryPanel;
@@ -79,8 +80,12 @@ public class GameManager {
         Move move = new Move(originFile, originRank, destinationFile, destinationRank);
         //executeMove(move);
         if (MoveValidator.validateMove(move)) {
-            System.out.println(move.getCapturedPiece());
+            //System.out.println(move.getCapturedPiece());
             executeMove(move);
+            if(move.getPiece().getType() == Piece.Type.KING){
+                System.out.println("king moved, updating position");
+                PieceSet.setKingCoordinates(move.getPiece().getColor(), move.getDestinationFile(),move.getDestinationRank());
+            }
 
         } else {
             System.out.println("move not allowed");
